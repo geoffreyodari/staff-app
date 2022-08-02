@@ -15,6 +15,8 @@ public interface StaffDao {
 
     List<Staff>findStaffId(String id);
 
+    List<Staff>findStaffByDepartmentId(int id);
+
     //update
     //omit for now
 

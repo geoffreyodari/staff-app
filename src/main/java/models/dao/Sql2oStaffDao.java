@@ -44,6 +44,15 @@ public class Sql2oStaffDao implements StaffDao{
     }
 
     @Override
+    public List<Staff> findStaffByDepartmentId(int id) {
+        try (Connection con = sql2o.open()) {
+            return con.createQuery("SELECT * FROM staff WHERE department=:id")
+                    .addParameter("id", id)
+                    .executeAndFetch(Staff.class);
+        }
+    }
+
+    @Override
     public void deleteById(int id) {
         String sql = "DELETE from staff WHERE id=:id";
         try (Connection con = sql2o.open()) {

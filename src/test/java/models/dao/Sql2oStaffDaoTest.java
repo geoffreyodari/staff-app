@@ -74,6 +74,16 @@ public class Sql2oStaffDaoTest {
     }
 
 
+    @Test
+    public void AllByDepartmentId_getsAllbyDepartmentId() throws Exception{
+        Staff staff1 = new Staff("Geoffrey","001","g@email.com","2355","Developer",1);
+        Staff staff2 = new Staff("James","004","j@email.com","23505","Developer",1);
+        staffDao.add(staff1);
+        staffDao.add(staff2);
+        assertEquals(2,staffDao.findStaffByDepartmentId(1).size());
+    }
+
+
 
     //helpers
 
