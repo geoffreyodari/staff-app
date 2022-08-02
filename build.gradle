@@ -12,6 +12,14 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    // https://mvnrepository.com/artifact/com.sparkjava/spark-core
+    implementation 'com.sparkjava:spark-core:2.9.4'
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    implementation 'org.slf4j:slf4j-api:2.0.0-alpha7'
+    // https://mvnrepository.com/artifact/org.sql2o/sql2o
+    implementation 'org.sql2o:sql2o:1.6.0'
+    // https://mvnrepository.com/artifact/com.h2database/h2
+    implementation 'com.h2database:h2:2.1.214'
 }
 
 test {
