@@ -38,7 +38,7 @@ public class Sql2oStaffDaoTest {
     }
 
     @Test
-    public void getAll() throws Exception {
+    public void getAll_getAllStaff() throws Exception {
         Staff staff1 = new Staff("Geoffrey","001","g@email.com","2355","Developer",1);
         staffDao.add(staff1);
         Staff staff2 = new Staff("James","003","j@email.com","2355","Developer",1);
@@ -47,13 +47,30 @@ public class Sql2oStaffDaoTest {
     }
 
     @Test
-    public void getAllByStaffId() throws Exception {
-
+    public void findStaffById_getByStaffId() throws Exception {
         Staff staff1 = new Staff("Geoffrey","001","g@email.com","2355","Developer",1);
         staffDao.add(staff1);
-        System.out.println(staff1);
-        System.out.println(staffDao.findStaffId("001").get(0));
         assertTrue(staff1.equals(staffDao.findStaffId("001").get(0)));
+    }
+
+    @Test
+    public void deleteById_deleteStaffById() throws Exception{
+        Staff staff1 = new Staff("Geoffrey","001","g@email.com","2355","Developer",1);
+        staffDao.add(staff1);
+        Staff staff2 = new Staff("James","004","j@email.com","23505","Developer",1);
+        staffDao.add(staff2);
+        staffDao.deleteById(1);
+        assertTrue(staff2.equals(staffDao.getAll().get(0)));
+    }
+
+    @Test
+    public void clearAll_deletesAll() throws Exception{
+        Staff staff1 = new Staff("Geoffrey","001","g@email.com","2355","Developer",1);
+        Staff staff2 = new Staff("James","004","j@email.com","23505","Developer",1);
+        staffDao.add(staff1);
+        staffDao.add(staff2);
+        staffDao.clearAll();
+        assertEquals(0,staffDao.getAll().size());
     }
 
 
