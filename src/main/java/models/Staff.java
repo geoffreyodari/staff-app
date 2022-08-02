@@ -8,6 +8,8 @@ public class Staff {
     private String role;
     private int  department;
 
+    private int id;
+
     public Staff(String name, String staffId,String email,String phone,String role,int department){
         this.name = name;
         this.staffId = staffId;
