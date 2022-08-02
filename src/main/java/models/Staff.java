@@ -1,6 +1,7 @@
 package models;
 
 
+import java.util.Objects;
 
 public class Staff {
     private String name;
@@ -46,4 +47,28 @@ public class Staff {
     public String getStaffId() {
         return staffId;
     }
+
+    public int setId(int id) {
+        return this.id = id;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (this == o) return true;
+        if(!(o instanceof Staff) ){
+            return false;
+        }else{
+            Staff that = (Staff) o;
+            return id == that.id &&
+                    Objects.equals(name, that.name) &&
+                    Objects.equals(email, that.email) &&
+                    Objects.equals(staffId, that.staffId);
+
+        }
+    }
+
 }

@@ -13,5 +13,5 @@ CREATE TABLE IF NOT EXISTS staff (
 	email VARCHAR,
 	phone VARCHAR,
 	role VARCHAR,
-	department INTEGER,
+	department int,
 );

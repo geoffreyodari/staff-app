@@ -13,6 +13,8 @@ public interface StaffDao {
     List<Staff> getAll();
     // List<Staff>getAllStaff(int id);
 
+    List<Staff>findStaffId(String id);
+
     //update
     //omit for now
 
