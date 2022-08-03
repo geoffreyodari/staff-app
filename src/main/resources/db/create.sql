@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS staff (
 CREATE TABLE IF NOT EXISTS news (
  	id int PRIMARY KEY auto_increment,
  	title VARCHAR,
-	author VARCHAR,
+	author int,
 	type VARCHAR,
 	contenturl VARCHAR,
 	department int,

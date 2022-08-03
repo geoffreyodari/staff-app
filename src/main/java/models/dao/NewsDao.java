@@ -1,14 +1,11 @@
 package models.dao;
 
-public interface NewsDao {
-    //CREATE
-   void add(Object object);
+import models.News;
 
-    //READ
-    void all();
-    void findByAuthor(int id);
-    void findById(int id);
-    //UPDATE
+import java.util.List;
+
+public interface NewsDao {
+
 
     //DELETE
     void clearAll();
