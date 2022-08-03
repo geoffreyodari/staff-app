@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Objects;
+
 public class Department {
     String name;
     String description;
@@ -23,5 +25,23 @@ public class Department {
     }
 
 
+    public int setId(int id) {
+        return this.id = id;
+    }
 
+    @Override
+    public boolean equals(Object o){
+        if(this==o) return true;
+        if(!(o instanceof Department)){
+            return false;
+        }else{
+            Department that = (Department) o;
+            return  id == that.id &&
+                    Objects.equals(name, that.name)&&
+                    Objects.equals(description, that.description);
+
+
+        }
+
+    }
 }
