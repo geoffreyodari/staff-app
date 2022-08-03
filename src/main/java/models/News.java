@@ -2,13 +2,16 @@ package models;
 
 public abstract class News {
     private String title;
-    private String author;
+    private int author;
+
+    private String contentUrl;
 
     private int id;
 
-    public News(String title,String author){
+    public News(String title,int author,String contentUrl){
         this.title = title;
         this.author = author;
+        this.contentUrl =contentUrl;
 
     }
 
@@ -16,12 +19,16 @@ public abstract class News {
         return title;
     }
 
-    public String getAuthor() {
+    public int getAuthor() {
         return author;
     }
 
     public int getId() {
         return id;
+    }
+
+    public String getContentUrl() {
+        return contentUrl;
     }
 
     @Override
@@ -30,7 +37,7 @@ public abstract class News {
             return false;
         }else{
             News newStory = (News) otherNews;
-            return this.getTitle().equals(newStory.getTitle())&&this.getAuthor().equals(newStory.getAuthor());
+            return this.getTitle().equals(newStory.getTitle())&&this.getContentUrl().equals(newStory.getContentUrl());
         }
     }
 

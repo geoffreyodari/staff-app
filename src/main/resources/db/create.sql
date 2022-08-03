@@ -21,5 +21,6 @@ CREATE TABLE IF NOT EXISTS news (
  	title VARCHAR,
 	author VARCHAR,
 	type VARCHAR,
+	content VARCHAR,
 	department int,
 );

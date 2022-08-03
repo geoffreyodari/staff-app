@@ -1,11 +1,13 @@
 package models;
 
 public class GeneralNews extends News{
-
-    public GeneralNews(String title,String author){
-        super(title, author);
-
+    private static String type;
+    public GeneralNews(String title,int author, String contentUrl){
+        super(title, author,contentUrl);
+        this.type="general";
     }
 
-
+    public static String getType() {
+        return type;
+    }
 }
