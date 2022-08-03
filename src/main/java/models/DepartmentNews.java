@@ -13,4 +13,8 @@ public class DepartmentNews extends News {
     public int getDepartment() {
         return department;
     }
+
+    public String getType() {
+        return type;
+    }
 }
