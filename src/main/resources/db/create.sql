@@ -15,3 +15,11 @@ CREATE TABLE IF NOT EXISTS staff (
 	role VARCHAR,
 	department int,
 );
+
+CREATE TABLE IF NOT EXISTS news (
+ 	id int PRIMARY KEY auto_increment,
+ 	title VARCHAR,
+	author VARCHAR,
+	type VARCHAR,
+	department int,
+);
