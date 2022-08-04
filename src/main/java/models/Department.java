@@ -1,16 +1,19 @@
 package models;
 
+
 import models.dao.Sql2oStaffDao;
 
 import java.util.List;
 import java.util.Objects;
 
 public class Department {
+
     String departmentName;
     String description;
 
     int size;
     int id;
+
 
     private static Staff staff;
     public Department(String departmentName,String description){

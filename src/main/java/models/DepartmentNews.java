@@ -1,5 +1,8 @@
 package models;
 
+import java.util.List;
+import java.util.Objects;
+
 public class DepartmentNews extends News {
     private String type;
     private int department;
@@ -20,7 +23,7 @@ public class DepartmentNews extends News {
 
     public String getContentUrl() {
         return contentUrl;
-    }
+
 
     public int getDepartment() {
         return department;
@@ -30,7 +33,26 @@ public class DepartmentNews extends News {
         this.department = department;
     }
 
+
     public String getType() {
         return type;
     }
+
+
+    @Override
+    public boolean equals(Object o){
+        if(this==o) return true;
+        if(!(o instanceof DepartmentNews)){
+            return false;
+        }else{
+            DepartmentNews that = (DepartmentNews) o;
+            return  Objects.equals(getTitle(), that.getTitle())&&
+                    Objects.equals(getContentUrl(), that.getContentUrl());
+
+
+        }
+
+    }
+
+
 }
