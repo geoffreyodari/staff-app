@@ -14,8 +14,8 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     // https://mvnrepository.com/artifact/com.sparkjava/spark-core
     implementation 'com.sparkjava:spark-core:2.9.4'
-    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
-    implementation 'org.slf4j:slf4j-api:2.0.0-alpha7'
+     //https://mvnrepository.com/artifact/org.slf4j/slf4j-simple
+    implementation 'org.slf4j:slf4j-simple:1.7.36' //to ensure easy to read logging.
     // https://mvnrepository.com/artifact/org.sql2o/sql2o
     implementation 'org.sql2o:sql2o:1.6.0'
     // https://mvnrepository.com/artifact/com.h2database/h2
