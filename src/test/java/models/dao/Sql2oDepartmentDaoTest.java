@@ -48,6 +48,13 @@ public class Sql2oDepartmentDaoTest {
         assertTrue(department.equals((departmentDao.findById(1)).get(0)));
     }
 
+    @Test
+    public void all_getsAllDepartments(){
+        Department department = new Department("Finance","Responsible funds management");
+        departmentDao.add(department);
+        assertEquals(1,(departmentDao.getAll()).size());
+    }
+
 
 
     //helpers

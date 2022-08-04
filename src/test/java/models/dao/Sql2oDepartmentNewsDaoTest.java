@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -28,6 +30,7 @@ public class Sql2oDepartmentNewsDaoTest {
         String connectionString = "jdbc:h2:mem:testdb;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
         Sql2o sql2o = new Sql2o(connectionString, "", "");
         departmentNewsDao = new Sql2oDepartmentNewsDao(sql2o);
+        departmentDao = new Sql2oDepartmentDao(sql2o);
         staffDao = new Sql2oStaffDao(sql2o);
         conn = sql2o.open();
     }
@@ -39,19 +42,22 @@ public class Sql2oDepartmentNewsDaoTest {
 
     @Test
     public void add_getsNewsId(){
-        DepartmentNews newDepartmentNews= setupNews();
-        assertEquals(1,newDepartmentNews.getId());
+        setupNews();
+        int newDepartmentNews= ((departmentNewsDao.all().get(0))).getId();
+        assertEquals(1,newDepartmentNews);
 
     }
 
     @Test
     public void findById_getsDepartmentNewsById(){
+
+        setupDepartment();
         int staffId = 1;
         String title = "Government Assets Recovered";
         String contentUrl ="/government-recovers-stolen-assets";
-        DepartmentNews newDepartmentNews = new DepartmentNews(title,staffId,contentUrl,1);
+        DepartmentNews newDepartmentNews = new DepartmentNews(title,staffId,contentUrl,(setupDepartment()).getId());
         departmentNewsDao.add(newDepartmentNews);
-        assertTrue(newDepartmentNews.equals((departmentNewsDao.findById(1)).get(0)));
+        assertTrue(newDepartmentNews.equals(departmentNewsDao.findById(1).get(0)));
     }
 
     @Test
@@ -98,6 +104,13 @@ public class Sql2oDepartmentNewsDaoTest {
         assertEquals(0,departmentNewsDao.all().size());
     }
 
+    @Test
+    public void getsNameOfDepartment(){
+        Department name = setupDepartment() ;
+        setupNews();
+        assertEquals(name.getName(),((departmentNewsDao.all()).get(0)).getName());
+    }
+
 
 
     //helpers
@@ -116,11 +129,13 @@ public class Sql2oDepartmentNewsDaoTest {
     }
 
     public DepartmentNews setupNews() {
+        setupDepartment();
         Staff staff = setupStaff();
         int staffId = staff.getId();
+        Department newDepartment = (departmentDao.getAll()).get(0);
         String title = "Government Assets Recovered";
         String contentUrl ="/government-recovers-stolen-assets";
-        DepartmentNews departmentNews = new DepartmentNews(title,staffId,contentUrl,1);
+        DepartmentNews departmentNews = new DepartmentNews(title,staffId,contentUrl,newDepartment.getId());
         departmentNewsDao.add(departmentNews);
         return departmentNews;
     }
