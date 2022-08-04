@@ -1,8 +1,6 @@
 package models.dao;
 
-import models.Department;
 import models.DepartmentNews;
-import models.GeneralNews;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
@@ -11,6 +9,8 @@ import java.util.List;
 
 public class Sql2oDepartmentNewsDao implements NewsDao {
     private final Sql2o sql2o;
+
+
 
     public Sql2oDepartmentNewsDao(Sql2o sql2o) {
         this.sql2o = sql2o;
@@ -33,7 +33,7 @@ public class Sql2oDepartmentNewsDao implements NewsDao {
 
     public List<DepartmentNews> all() {
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT * FROM news WHERE type='departmental'")
+            return con.createQuery("SELECT * FROM news JOIN departments on news.department = departments.id WHERE news.type='departmental'")
                     .throwOnMappingFailure(false)
                     .executeAndFetch(DepartmentNews.class);
         }
@@ -42,7 +42,7 @@ public class Sql2oDepartmentNewsDao implements NewsDao {
 
     public List<DepartmentNews> findByAuthor(int id) {
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT * FROM news WHERE author=:id AND type='departmental'")
+            return con.createQuery("SELECT * FROM news JOIN staff ON news.author = staff.id  WHERE   news.author=:id AND news.type='departmental'")
                     .addParameter("id", id)
                     .throwOnMappingFailure(false)
                     .executeAndFetch(DepartmentNews.class);
@@ -51,7 +51,7 @@ public class Sql2oDepartmentNewsDao implements NewsDao {
 
     public List<DepartmentNews> findById(int id) {
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT * FROM news WHERE id=:id AND type='departmental'")
+            return con.createQuery("SELECT * FROM news JOIN departments ON news.department = departments.id  WHERE news.id=:id")
                     .addParameter("id", id)
                     .throwOnMappingFailure(false)
                     .executeAndFetch(DepartmentNews.class);
@@ -60,7 +60,7 @@ public class Sql2oDepartmentNewsDao implements NewsDao {
 
     public List<DepartmentNews> findByDepartmentId(int id) {
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT * FROM news WHERE department =:id")
+            return con.createQuery("SELECT * FROM news JOIN departments ON news.department = departments.id  WHERE news.department=:id")
                     .addParameter("id", id)
                     .throwOnMappingFailure(false)
                     .executeAndFetch(DepartmentNews.class);
