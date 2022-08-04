@@ -43,14 +43,14 @@ public class Sql2oStaffDaoTest {
         staffDao.add(staff1);
         Staff staff2 = new Staff("James","003","j@email.com","2355","Developer",1);
         staffDao.add(staff2);
-        assertEquals(2, staffDao.getAll().size());
+        assertEquals(2, (staffDao.getAll()).size());
     }
 
     @Test
     public void findStaffById_getByStaffId() throws Exception {
         Staff staff1 = new Staff("Geoffrey","001","g@email.com","2355","Developer",1);
         staffDao.add(staff1);
-        assertTrue(staff1.equals(staffDao.findStaffId("001").get(0)));
+        assertTrue(staff1.equals((staffDao.findStaffId("001")).get(0)));
     }
 
     @Test

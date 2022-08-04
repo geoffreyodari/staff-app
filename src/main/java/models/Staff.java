@@ -25,6 +25,15 @@ public class Staff {
 
     };
 
+    public Staff(String name, String staffId,String email,String phone,String role,int department){
+        this.name = name;
+        this.staffId = staffId;
+        this.email = email;
+        this.phone = phone;
+        this.role = role;
+        this.department = department;
+
+    };
 
 
     public String getPhone() {

@@ -3,15 +3,11 @@ package models;
 public abstract class News {
     private String title;
     private int author;
-
-    private String contentUrl;
-
     private int id;
 
-    public News(String title,int author,String contentUrl){
+    public News(String title,int author){
         this.title = title;
         this.author = author;
-        this.contentUrl =contentUrl;
 
     }
 
@@ -27,9 +23,7 @@ public abstract class News {
         return id;
     }
 
-    public String getContentUrl() {
-        return contentUrl;
-    }
+
 
     @Override
     public boolean equals(Object otherNews){
@@ -37,7 +31,7 @@ public abstract class News {
             return false;
         }else{
             News newStory = (News) otherNews;
-            return this.getTitle().equals(newStory.getTitle())&&this.getContentUrl().equals(newStory.getContentUrl());
+            return this.getTitle().equals(newStory.getTitle());
         }
     }
 
