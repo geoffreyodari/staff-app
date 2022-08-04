@@ -42,7 +42,7 @@ public class Sql2oDepartmentNewsDao implements NewsDao {
 
     public List<DepartmentNews> findByAuthor(int id) {
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT * FROM news WHERE author=:id AND type='departmental'")
+            return con.createQuery("SELECT * FROM news JOIN staff ON news.author = staff.id  WHERE   news.author=:id AND news.type='departmental'")
                     .addParameter("id", id)
                     .throwOnMappingFailure(false)
                     .executeAndFetch(DepartmentNews.class);
@@ -60,7 +60,7 @@ public class Sql2oDepartmentNewsDao implements NewsDao {
 
     public List<DepartmentNews> findByDepartmentId(int id) {
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT * FROM news WHERE news.department=:id")
+            return con.createQuery("SELECT * FROM news JOIN departments ON news.department = departments.id  WHERE news.department=:id")
                     .addParameter("id", id)
                     .throwOnMappingFailure(false)
                     .executeAndFetch(DepartmentNews.class);

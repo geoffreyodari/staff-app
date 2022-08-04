@@ -62,12 +62,15 @@ public class Sql2oDepartmentNewsDaoTest {
 
     @Test
     public void findByStaffId_getsAllDepartmentNewsByAuthor(){
+        Staff newStaff = setupStaff();
         int staffId = 1;
         String title = "Government Assets Recovered";
         String contentUrl ="/government-recovers-stolen-assets";
-        DepartmentNews newDepartmentNews = new DepartmentNews(title,staffId,contentUrl,1);
+        DepartmentNews newDepartmentNews = new DepartmentNews(title,newStaff.getId(),contentUrl,1);
         departmentNewsDao.add(newDepartmentNews);
-        assertTrue(newDepartmentNews.equals((departmentNewsDao.findByAuthor(1)).get(0)));
+        System.out.println((departmentNewsDao.findByAuthor(newStaff.getId()).get(0)));
+        System.out.println(newDepartmentNews);
+        assertTrue(newDepartmentNews.equals((departmentNewsDao.findByAuthor(newStaff.getId()).get(0))));
     }
 
     @Test
@@ -83,12 +86,15 @@ public class Sql2oDepartmentNewsDaoTest {
 
     @Test
     public void findByDepartmentId_findsNewsByDepartmentId(){
-        int staffId = 1;
+        Staff newStaff = setupStaff();
+        Department newDepartment = setupDepartment();
         String title = "Government Assets Recovered";
         String contentUrl ="/government-recovers-stolen-assets";
-        DepartmentNews newDepartmentNews = new DepartmentNews(title,staffId,contentUrl,1);
+
+        departmentDao.add(newDepartment);
+        DepartmentNews newDepartmentNews = new DepartmentNews(title,newStaff.getId(),contentUrl,((departmentDao.getAll()).get(0)).getId());
         departmentNewsDao.add(newDepartmentNews);
-        assertTrue(newDepartmentNews.equals(departmentNewsDao.findByDepartmentId(1).get(0)));
+        assertTrue(newDepartmentNews.equals(departmentNewsDao.findByDepartmentId(((departmentDao.getAll()).get(0)).getId()).get(0)));
     }
 
     @Test
