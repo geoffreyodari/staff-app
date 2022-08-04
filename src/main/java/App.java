@@ -1,5 +1,6 @@
 import com.google.gson.Gson;
 import models.Department;
+import models.Staff;
 import models.dao.Sql2oDepartmentDao;
 import models.dao.Sql2oStaffDao;
 import org.sql2o.Connection;
@@ -30,11 +31,40 @@ public class App {
             return gson.toJson(department);
         });
 
+        post("/departments/:departmentId/staff/new", "application/json", (req, res) -> {
+            int departmentId = Integer.parseInt(req.params("departmentId"));
+            Staff newStaff = gson.fromJson(req.body(), Staff.class);
+            newStaff.setDepartment(departmentId); //we need to set this separately because it comes from our route, not our JSON input.
+            staffDao.add(newStaff);
+            res.status(201);
+            return gson.toJson(staffDao);
+        });
+
 
 
         //READ
+        get("/departments", "application/json", (req, res) -> {
+            return gson.toJson(departmentDao.getAll());
+        });
 
+        get("/departments/:id", "application/json", (req, res) -> {
+            int restaurantId = Integer.parseInt(req.params("id"));
+            return gson.toJson(departmentDao.findById(restaurantId));
+        });
 
+        get("/departments/:id/staff", "application/json", (req, res) -> {
+            int departmentId = Integer.parseInt(req.params("id"));
+            return gson.toJson(staffDao.findStaffByDepartmentId(departmentId));
+        });
+
+        get("/staff","application/json", (req, res) -> {
+            return gson.toJson(staffDao.getAll());
+        });
+
+        //FILTERS
+        after((req, res) ->{
+            res.type("application/json");
+        });
 
 
     }

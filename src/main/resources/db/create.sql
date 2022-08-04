@@ -2,7 +2,7 @@ SET MODE PostgreSQL;
 
 CREATE TABLE IF NOT EXISTS departments (
  	id int PRIMARY KEY auto_increment,
- 	name VARCHAR,
+ 	departmentname VARCHAR,
  	description VARCHAR
 );
 
