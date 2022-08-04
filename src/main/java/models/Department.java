@@ -1,22 +1,28 @@
 package models;
 
+
+import models.dao.Sql2oStaffDao;
+
 import java.util.List;
 import java.util.Objects;
 
 public class Department {
-    private String name;
-    private String description;
-    private int id;
+
+    String departmentName;
+    String description;
+
+    int size;
+    int id;
 
 
-
-    public Department(String name,String description){
-        this.name = name;
+    private static Staff staff;
+    public Department(String departmentName,String description){
+        this.departmentName = departmentName;
         this.description = description;
     }
 
-    public String getName() {
-        return name;
+    public String getDepartmentName() {
+        return departmentName;
     }
 
     public String getDescription() {
@@ -32,6 +38,7 @@ public class Department {
         return this.id = id;
     }
 
+
     @Override
     public boolean equals(Object o){
         if(this==o) return true;
@@ -40,7 +47,7 @@ public class Department {
         }else{
             Department that = (Department) o;
             return  id == that.id &&
-                    Objects.equals(name, that.name)&&
+                    Objects.equals(departmentName, that.departmentName)&&
                     Objects.equals(description, that.description);
 
 

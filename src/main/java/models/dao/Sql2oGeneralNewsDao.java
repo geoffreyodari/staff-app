@@ -17,7 +17,7 @@ public class Sql2oGeneralNewsDao implements NewsDao{
 
 
     public void add(GeneralNews generalNews) {
-        String sql = "INSERT INTO news (title, author, type, contenturl) VALUES (:title, :author, :type, :contentUrl)";
+        String sql = "INSERT INTO news (title, author, type, contenturl) VALUES (:title, :author, 'general', :contentUrl)";
         try (Connection con = sql2o.open()) {
             int id = (int) con.createQuery(sql, true)
                     .bind(generalNews)
@@ -35,7 +35,7 @@ public class Sql2oGeneralNewsDao implements NewsDao{
 
     public List<GeneralNews> all() {
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT * FROM news WHERE type='general'")
+            return con.createQuery("SELECT * FROM news WHERE type='general'" )
                     .throwOnMappingFailure(false)
                     .executeAndFetch(GeneralNews.class);
         }

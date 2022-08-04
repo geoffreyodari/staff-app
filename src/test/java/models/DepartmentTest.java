@@ -16,7 +16,7 @@ public class DepartmentTest {
     public void newDepartment_getsName(){
         String name = "Finance";
         Department newDepartment = new Department("Finance","Responsible funds management");
-        assertEquals(name,newDepartment.getName());
+        assertEquals(name,newDepartment.getDepartmentName());
     }
 
     @Test

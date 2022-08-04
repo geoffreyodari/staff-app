@@ -29,7 +29,8 @@ public class Sql2oStaffDao implements StaffDao{
     @Override
     public List<Staff> getAll() {
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT * FROM staff")
+            return con.createQuery("SELECT *  FROM staff Join departments on staff.department=departments.id")
+                    .throwOnMappingFailure(false)
                     .executeAndFetch(Staff.class);
         }
     }
@@ -37,8 +38,9 @@ public class Sql2oStaffDao implements StaffDao{
     @Override
     public List<Staff> findStaffId(String id) {
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT * FROM staff WHERE staffid=:id")
+            return con.createQuery("SELECT * FROM  staff Join departments on staff.department=departments.id WHERE staff.staffid=:id")
                     .addParameter("id", id)
+                    .throwOnMappingFailure(false)
                     .executeAndFetch(Staff.class);
         }
     }
@@ -46,8 +48,9 @@ public class Sql2oStaffDao implements StaffDao{
     @Override
     public List<Staff> findStaffByDepartmentId(int id) {
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT * FROM staff WHERE department=:id")
+            return con.createQuery("SELECT * FROM staff  WHERE department=:id")
                     .addParameter("id", id)
+                    .throwOnMappingFailure(false)
                     .executeAndFetch(Staff.class);
         }
     }
