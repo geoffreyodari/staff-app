@@ -1,10 +1,23 @@
 # Staff App
 A REST API for querying and retrieving scoped news and information for employees in a company
 
-### Author
+
+## Author
 Geoffrey Odari
 
-### Installation
+
+## Functionality
+### This Application enables users to:-
+* Create Departments,News,Users
+* Add Individual users, their details, i.e position in the company, their roles, which department(s) they are associated.
+* View Specific information such as the Departments name, description, number of employees in the department.
+* View all users from a specific Department.
+* View the news relating to a department.
+* Post news relating to a department.
+
+
+
+## Installation
 
 * System Requirements
   Openjdk 18.0.1
@@ -16,26 +29,10 @@ Run $ gradle run
 ```
 
 
-### To access the application
-Open your Browser and enter the link http://localhost:4567
+## Using the API
 
+All endpoints require no Authentication.
 
-### Viewing departments
+To view the documentation click [here][postman_documentation_link].
 
-
-### adding staff
-
-### viewing staff
-
-
-### add department news
-
-### View all department news
-
-
-## add general news
-
-### View all general news
-
-### View general news by id
-
+[postman_documentation_link]: https://documenter.getpostman.com/view/5944509/VUjLKmzQ#d11408f7-5447-4645-acf4-00d37d9d54c9
