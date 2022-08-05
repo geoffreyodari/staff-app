@@ -17,7 +17,7 @@ public class Sql2oDepartmentNewsDao implements NewsDao {
     }
 
     public void add(DepartmentNews departmentNews) {
-        String sql = "INSERT INTO news (title, author, type, contenturl,department) VALUES (:title, :author, :type, :contentUrl,:department)";
+        String sql = "INSERT INTO news (title, author, type, contenturl, department) VALUES (:title, :author, 'type', :contentUrl,:department)";
         try (Connection con = sql2o.open()) {
             int id = (int) con.createQuery(sql, true)
                     .bind(departmentNews)
@@ -33,7 +33,7 @@ public class Sql2oDepartmentNewsDao implements NewsDao {
 
     public List<DepartmentNews> all() {
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT * FROM news JOIN departments on news.department = departments.id WHERE news.type='departmental'")
+            return con.createQuery("SELECT * FROM news JOIN departments ON news.department = departments.id ")
                     .throwOnMappingFailure(false)
                     .executeAndFetch(DepartmentNews.class);
         }
@@ -42,7 +42,7 @@ public class Sql2oDepartmentNewsDao implements NewsDao {
 
     public List<DepartmentNews> findByAuthor(int id) {
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT * FROM news JOIN staff ON news.author = staff.id  WHERE   news.author=:id AND news.type='departmental'")
+            return con.createQuery("SELECT * FROM news JOIN staff ON news.author = staff.id  WHERE  news.author=:id AND news.type='departmental'")
                     .addParameter("id", id)
                     .throwOnMappingFailure(false)
                     .executeAndFetch(DepartmentNews.class);

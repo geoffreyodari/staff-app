@@ -42,9 +42,8 @@ public class Sql2oDepartmentNewsDaoTest {
 
     @Test
     public void add_getsNewsId(){
-        setupNews();
-        int newDepartmentNews= ((departmentNewsDao.all().get(0))).getId();
-        assertEquals(1,newDepartmentNews);
+        DepartmentNews newDepartmentNews = setupNews();
+        assertEquals(1,newDepartmentNews.getId());
 
     }
 
@@ -94,7 +93,7 @@ public class Sql2oDepartmentNewsDaoTest {
         departmentDao.add(newDepartment);
         DepartmentNews newDepartmentNews = new DepartmentNews(title,newStaff.getId(),contentUrl,((departmentDao.getAll()).get(0)).getId());
         departmentNewsDao.add(newDepartmentNews);
-        assertTrue(newDepartmentNews.equals(departmentNewsDao.findByDepartmentId(((departmentDao.getAll()).get(0)).getId()).get(0)));
+        assertTrue(newDepartmentNews.equals(departmentNewsDao.findByDepartmentId(newDepartmentNews.getId())));
     }
 
     @Test
@@ -112,9 +111,10 @@ public class Sql2oDepartmentNewsDaoTest {
 
     @Test
     public void getsNameOfDepartment(){
-        Department name = setupDepartment() ;
-        setupNews();
-        assertEquals(name.getName(),((departmentNewsDao.all()).get(0)).getName());
+        DepartmentNews newDeptNews = setupNews() ;
+        departmentNewsDao.add(newDeptNews);
+        DepartmentNews savedNews = (departmentNewsDao.all()).get(0);
+        assertEquals("Finance",savedNews.getDepartmentName());
     }
 
 

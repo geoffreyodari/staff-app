@@ -9,21 +9,34 @@ public class DepartmentNews extends News {
 
     private String contentUrl;
 
+    private String departmentName;
+
+
     public DepartmentNews(String title,int author,String contentUrl){
         super(title,author);
         this.type = "departmental";
         this.contentUrl =contentUrl;
     }
+
     public DepartmentNews(String title,int author,String contentUrl,int department){
         super(title,author);
         this.type = "departmental";
         this.contentUrl =contentUrl;
-        this.department = department;
     }
-
+    public DepartmentNews(String title,int author,String contentUrl,int department,String departmentName){
+        super(title,author);
+        this.type = "departmental";
+        this.contentUrl =contentUrl;
+        this.department = department;
+        this.departmentName = departmentName;
+    }
     public String getContentUrl() {
         return contentUrl;
+    }
 
+    public String getDepartmentName() {
+        return departmentName;
+    }
 
     public int getDepartment() {
         return department;
