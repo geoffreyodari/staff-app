@@ -1,9 +1,9 @@
 package models;
 
 public abstract class News {
-    private String title;
-    private int author;
-    private int id;
+    public String title;
+    public int author;
+    public int id;
 
     public News(String title,int author){
         this.title = title;
