@@ -22,6 +22,7 @@ public class DepartmentNews extends News {
         super(title,author);
         this.type = "departmental";
         this.contentUrl =contentUrl;
+        this.department = department;
     }
     public DepartmentNews(String title,int author,String contentUrl,int department,String departmentName){
         super(title,author);
